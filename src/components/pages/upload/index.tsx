@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
 import { PageTemplate } from "../../templates";
 import { ImageTransform } from "../../organisms";
+import { Button } from "../../atoms";
 
 export const UploadPage = () => {
   const [imageState, updateImageState] = useState({
@@ -16,6 +18,8 @@ export const UploadPage = () => {
     styles: {},
   });
 
+  const [imageAdded, setImageAdded] = useState(false);
+
   const onUpdate = (payload: any) => {
     updateImageState({
       ...imageState,
@@ -23,8 +27,26 @@ export const UploadPage = () => {
     });
   };
 
+  const Actions = styled.div`
+    margin-bottom: 3em;
+
+    button {
+      margin-right: 1em;
+    }
+  `;
+
   return (
     <PageTemplate>
+      <Actions>
+        {imageAdded ? (
+          <>
+            <Button>Publish</Button>
+            <Button>Reset</Button>
+          </>
+        ) : (
+          <Button>Add Image</Button>
+        )}
+      </Actions>
       <ImageTransform transformProps={imageState} onUpdate={onUpdate} />
     </PageTemplate>
   );
