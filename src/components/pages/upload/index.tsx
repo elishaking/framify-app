@@ -4,6 +4,15 @@ import styled from "styled-components";
 import { PageTemplate } from "../../templates";
 import { ImageTransform } from "../../organisms";
 import { Button } from "../../atoms";
+import { FileButton } from "../../molecules";
+
+const Actions = styled.div`
+  margin-bottom: 3em;
+
+  button {
+    margin-right: 1em;
+  }
+`;
 
 export const UploadPage = () => {
   const [imageState, updateImageState] = useState({
@@ -16,6 +25,7 @@ export const UploadPage = () => {
     angle: 0,
     classPrefix: "tr",
     styles: {},
+    src: "",
   });
 
   const [imageAdded, setImageAdded] = useState(false);
@@ -27,13 +37,28 @@ export const UploadPage = () => {
     });
   };
 
-  const Actions = styled.div`
-    margin-bottom: 3em;
+  const getImageSize = (dataUrl: string): Promise<number[]> => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        resolve([img.width, img.height]);
+      };
+      img.src = dataUrl;
+    });
+  };
 
-    button {
-      margin-right: 1em;
-    }
-  `;
+  const handleImage = (dataUrl: string) => {
+    setImageAdded(true);
+    getImageSize(dataUrl).then((size) => {
+      const [width, height] = size;
+      updateImageState({
+        ...imageState,
+        width,
+        height,
+        src: dataUrl,
+      });
+    });
+  };
 
   return (
     <PageTemplate>
@@ -44,7 +69,7 @@ export const UploadPage = () => {
             <Button>Reset</Button>
           </>
         ) : (
-          <Button>Add Image</Button>
+          <FileButton handleFile={handleImage}>Add Image</FileButton>
         )}
       </Actions>
       <ImageTransform transformProps={imageState} onUpdate={onUpdate} />

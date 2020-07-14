@@ -28,7 +28,7 @@ export const ImageTransform = ({ transformProps, onUpdate }: TProps) => {
             height: transformProps.height,
             ...transformProps.styles,
           }}
-          src="https://avatarmaker.net/images/1.png"
+          src={transformProps.src || "https://avatarmaker.net/images/1.png"}
           alt="Nothing"
         />
       </FreeTransform>
