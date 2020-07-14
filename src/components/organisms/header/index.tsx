@@ -14,7 +14,7 @@ const Wrapper = styled.nav`
     align-items: center;
 
     li {
-      margin-right: 2em;
+      margin-left: 2em;
     }
 
     a {
