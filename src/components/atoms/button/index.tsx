@@ -12,6 +12,8 @@ export const Button = styled.button<ButtonProps>`
   background-color: #000;
   border: none;
   border-radius: 3px;
+  width: fit-content;
+  min-width: 10em;
   transition: 0.3s ease-in-out;
 
   &:hover {
