@@ -29,10 +29,10 @@ export const Header = () => {
       <h1>Framify</h1>
 
       <ul>
-        <li>
+        <li aria-label="home-link">
           <Link to="/">Home</Link>
         </li>
-        <li>
+        <li aria-label="upload-link">
           <Link to="/upload">Upload</Link>
         </li>
       </ul>
