@@ -22,8 +22,8 @@ describe("<PageTemplate />", () => {
     });
 
     it("should render footer", () => {
-      const footerText = pageTemplate.getByText(/Copyright/i);
-      expect(footerText).toBeInTheDocument();
+      const footerElement = pageTemplate.getByText(/Copyright/i);
+      expect(footerElement).toBeInTheDocument();
     });
   });
 });
