@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Button } from "../../atoms";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.nav`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 2em;
 
   ul {
     display: flex;
@@ -14,6 +15,10 @@ const Wrapper = styled.nav`
 
     li {
       margin-right: 2em;
+    }
+
+    a {
+      text-decoration: none;
     }
   }
 `;
@@ -24,8 +29,12 @@ export const Header = () => {
       <h1>Framify</h1>
 
       <ul>
-        <li>Home</li>
-        <Button>Upload</Button>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/upload">Upload</Link>
+        </li>
       </ul>
     </Wrapper>
   );
