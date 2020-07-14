@@ -14,18 +14,22 @@ const Actions = styled.div`
   }
 `;
 
+const imageSize = {
+  width: 100,
+  height: 100,
+};
+
 export const UploadPage = () => {
   const [imageState, updateImageState] = useState({
     x: 0,
     y: 0,
     scaleX: 1,
     scaleY: 1,
-    width: 100,
-    height: 100,
     angle: 0,
     classPrefix: "tr",
     styles: {},
     src: "",
+    ...imageSize,
   });
 
   const [imageAdded, setImageAdded] = useState(false);
@@ -50,7 +54,11 @@ export const UploadPage = () => {
   const handleImage = (dataUrl: string) => {
     setImageAdded(true);
     getImageSize(dataUrl).then((size) => {
+      // TODO: keep image size within viewport
       const [width, height] = size;
+      imageSize.width = width;
+      imageSize.height = height;
+
       updateImageState({
         ...imageState,
         width,
@@ -60,19 +68,42 @@ export const UploadPage = () => {
     });
   };
 
+  const resetImage = () => {
+    updateImageState({
+      ...imageState,
+      x: 0,
+      y: 0,
+      scaleX: 1,
+      scaleY: 1,
+      angle: 0,
+      ...imageSize,
+    });
+  };
+
+  const cancel = () => {
+    updateImageState({
+      ...imageState,
+      src: "",
+    });
+    setImageAdded(false);
+  };
+
   return (
     <PageTemplate>
       <Actions>
         {imageAdded ? (
           <>
             <Button>Publish</Button>
-            <Button>Reset</Button>
+            <Button onClick={resetImage}>Reset</Button>
+            <Button onClick={cancel}>Cancel</Button>
           </>
         ) : (
           <FileButton handleFile={handleImage}>Add Image</FileButton>
         )}
       </Actions>
-      <ImageTransform transformProps={imageState} onUpdate={onUpdate} />
+      {imageAdded && (
+        <ImageTransform transformProps={imageState} onUpdate={onUpdate} />
+      )}
     </PageTemplate>
   );
 };
