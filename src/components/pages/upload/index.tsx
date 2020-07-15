@@ -15,6 +15,13 @@ const Actions = styled.div`
   button {
     margin-right: 1em;
   }
+
+  small {
+    font-size: 0.7em;
+    display: block;
+    color: gray;
+    margin-top: 0.3em;
+  }
 `;
 
 const imageSize = {
@@ -38,6 +45,7 @@ export const UploadPage = () => {
   });
 
   const [imageAdded, setImageAdded] = useState(false);
+  const [publishing, setPublishing] = useState(false);
 
   const onUpdate = (payload: any) => {
     updateImageState({
@@ -74,6 +82,7 @@ export const UploadPage = () => {
   };
 
   const publishImage = () => {
+    setPublishing(true);
     sendImage({
       dataUrl: imageState.src,
       rotationAngle: imageState.angle,
@@ -82,9 +91,11 @@ export const UploadPage = () => {
     })
       .then((res) => {
         history.push("/", res.data);
+        setPublishing(false);
       })
       .catch((err) => {
         console.log(err);
+        setPublishing(false);
       });
   };
 
@@ -113,9 +124,15 @@ export const UploadPage = () => {
       <Actions>
         {imageAdded ? (
           <>
-            <Button onClick={publishImage}>Publish</Button>
+            <Button onClick={publishImage} disabled={publishing}>
+              {publishing ? "Loading..." : "Publish"}
+            </Button>
             <Button onClick={resetImage}>Reset</Button>
             <Button onClick={cancel}>Cancel</Button>
+            <small>
+              You can Scale, Move and/or rotate the image. Hold{" "}
+              <strong>shift</strong> to maintain aspect while scaling
+            </small>
           </>
         ) : (
           <FileButton handleFile={handleImage}>Add Image</FileButton>
