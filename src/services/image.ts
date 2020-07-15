@@ -7,6 +7,10 @@ export interface ImagePayload {
   scale: number[];
 }
 
+export function fetchImages() {
+  return axios.get("/api/image");
+}
+
 export function sendImage(imagePayload: ImagePayload) {
   return axios.post("/api/image", {
     imagePayload,

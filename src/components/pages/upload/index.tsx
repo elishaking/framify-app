@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import { PageTemplate } from "../../templates";
@@ -7,7 +8,6 @@ import { Button } from "../../atoms";
 import { FileButton } from "../../molecules";
 
 import { sendImage } from "../../../services/image";
-import { useHistory } from "react-router-dom";
 
 const Actions = styled.div`
   margin-bottom: 3em;
