@@ -6,6 +6,9 @@ import { ImageTransform } from "../../organisms";
 import { Button } from "../../atoms";
 import { FileButton } from "../../molecules";
 
+import { sendImage } from "../../../services/image";
+import { useHistory } from "react-router-dom";
+
 const Actions = styled.div`
   margin-bottom: 3em;
 
@@ -20,6 +23,8 @@ const imageSize = {
 };
 
 export const UploadPage = () => {
+  const history = useHistory();
+
   const [imageState, updateImageState] = useState({
     x: 0,
     y: 0,
@@ -68,6 +73,22 @@ export const UploadPage = () => {
     });
   };
 
+  const publishImage = () => {
+    sendImage({
+      dataUrl: imageState.src,
+      rotationAngle: imageState.angle,
+      scale: [imageState.scaleX, imageState.scaleY],
+      size: [imageSize.width, imageSize.height],
+    })
+      .then((res) => {
+        console.log(res.data);
+        // history.push("/", res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const resetImage = () => {
     updateImageState({
       ...imageState,
@@ -93,7 +114,7 @@ export const UploadPage = () => {
       <Actions>
         {imageAdded ? (
           <>
-            <Button>Publish</Button>
+            <Button onClick={publishImage}>Publish</Button>
             <Button onClick={resetImage}>Reset</Button>
             <Button onClick={cancel}>Cancel</Button>
           </>
