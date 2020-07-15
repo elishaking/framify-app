@@ -21,6 +21,8 @@ These are the steps to get the app up and running
 
 - Run the application:
 
+  _Note: you need an instance of the backend already up and running, find it here: https://github.com/elishaking/framify_
+
   ```sh
   yarn start
   ```
