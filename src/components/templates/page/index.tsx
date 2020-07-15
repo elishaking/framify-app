@@ -14,6 +14,10 @@ const Wrapper = styled.div`
   padding: 3em 3em 0 3em;
   max-width: 1300px;
   margin: auto;
+
+  h3 {
+    margin-bottom: 1em;
+  }
 `;
 
 const Footer = styled.footer`

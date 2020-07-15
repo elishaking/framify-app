@@ -5,6 +5,7 @@ import { PageTemplate } from "../../templates";
 import { Button } from "../../atoms";
 
 import { fetchImages, FramedImage } from "../../../services/image";
+import { FramedImageList } from "../../organisms";
 
 export const HomePage = () => {
   const history = useHistory();
@@ -28,20 +29,18 @@ export const HomePage = () => {
         <p>Loading...</p>
       </PageTemplate>
     );
-
+  // TODO: move this condition into <FramedImageList />
   if (images.length === 0)
     return (
       <PageTemplate>
-        <h3>You have not made any uploads</h3>
-        <Button onClick={() => history.push("/upload")}>Upload</Button>
+        <h3>🦏 You have not published any images</h3>
+        <Button onClick={() => history.push("/upload")}>Add</Button>
       </PageTemplate>
     );
 
   return (
     <PageTemplate>
-      {images.map((image: any) => {
-        return <div key={image.id}>{image.date}</div>;
-      })}
+      <FramedImageList framedImages={images.reverse()} />
     </PageTemplate>
   );
 };

@@ -81,8 +81,7 @@ export const UploadPage = () => {
       size: [imageSize.width, imageSize.height],
     })
       .then((res) => {
-        console.log(res.data);
-        // history.push("/", res.data);
+        history.push("/", res.data);
       })
       .catch((err) => {
         console.log(err);
