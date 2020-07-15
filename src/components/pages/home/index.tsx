@@ -4,12 +4,12 @@ import { useHistory } from "react-router-dom";
 import { PageTemplate } from "../../templates";
 import { Button } from "../../atoms";
 
-import { fetchImages } from "../../../services/image";
+import { fetchImages, FramedImage } from "../../../services/image";
 
 export const HomePage = () => {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<FramedImage[]>([]);
 
   useEffect(() => {
     fetchImages()

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 export interface ImagePayload {
   dataUrl: string;
@@ -7,12 +7,18 @@ export interface ImagePayload {
   scale: number[];
 }
 
+export interface FramedImage {
+  imageUrl: string;
+  size: number;
+  date: number;
+}
+
 export function fetchImages() {
-  return axios.get("/api/image");
+  return axios.get<any, AxiosResponse<{ data: FramedImage[] }>>("/api/image");
 }
 
 export function sendImage(imagePayload: ImagePayload) {
-  return axios.post("/api/image", {
+  return axios.post<ImagePayload, { data: FramedImage }>("/api/image", {
     imagePayload,
   });
 }
