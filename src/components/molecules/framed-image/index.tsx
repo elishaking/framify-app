@@ -30,7 +30,7 @@ const Wrapper = styled.div`
 
 export const FramedImageItem = ({ framedImage }: TProps) => {
   return (
-    <Wrapper className="framed-img-item">
+    <Wrapper className="framed-img-item" aria-label="framed-img-item">
       <img src={framedImage.imageUrl} alt="framed" />
       <p>{formatDate(framedImage.date)}</p>
     </Wrapper>

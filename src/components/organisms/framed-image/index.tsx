@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 
 export const FramedImageList = ({ framedImages }: TProps) => {
   return (
-    <Wrapper>
+    <Wrapper aria-label="framed-img-list">
       {framedImages.map((framedImage) => {
         return (
           <FramedImageItem key={framedImage.id} framedImage={framedImage} />
