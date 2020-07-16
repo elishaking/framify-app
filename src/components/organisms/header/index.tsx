@@ -21,6 +21,12 @@ const Wrapper = styled.nav`
       text-decoration: none;
     }
   }
+
+  @media (max-width: 430px) {
+    li:first-child {
+      display: none;
+    }
+  }
 `;
 
 export const Header = () => {

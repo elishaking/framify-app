@@ -24,7 +24,7 @@ describe("<Header />", () => {
       expect(homeLink).toBeInTheDocument();
     });
 
-    it("should render home link", () => {
+    it("should render upload link", () => {
       const uploadLink = header.getByLabelText("upload-link");
       expect(uploadLink).toBeInTheDocument();
     });
