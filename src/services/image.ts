@@ -8,6 +8,7 @@ export interface ImagePayload {
 }
 
 export interface FramedImage {
+  id?: string;
   imageUrl: string;
   size: number;
   date: number;

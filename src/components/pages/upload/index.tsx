@@ -120,7 +120,7 @@ export const UploadPage = () => {
   };
 
   return (
-    <PageTemplate>
+    <PageTemplate showFooter={false}>
       <Actions>
         {imageAdded ? (
           <>

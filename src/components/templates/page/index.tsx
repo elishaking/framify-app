@@ -5,6 +5,7 @@ import { Header } from "../../organisms";
 
 interface TProps {
   children: React.ReactNode;
+  showFooter?: boolean;
 }
 
 const Wrapper = styled.div`
@@ -26,14 +27,16 @@ const Footer = styled.footer`
   text-align: center;
 `;
 
-export const PageTemplate = ({ children }: TProps) => {
+export const PageTemplate = ({ children, showFooter = true }: TProps) => {
   return (
     <Wrapper>
       <Header />
       {children}
-      <Footer>
-        <small>Copyright 2020</small>
-      </Footer>
+      {showFooter && (
+        <Footer>
+          <small>Copyright 2020</small>
+        </Footer>
+      )}
     </Wrapper>
   );
 };

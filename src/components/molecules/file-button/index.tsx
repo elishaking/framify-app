@@ -33,7 +33,6 @@ export const FileButton = ({
 
   const fileSelected = (e: any) => {
     const input = e.target;
-    console.log(input.files[0]);
 
     if (input.files && input.files[0] && handleFile) {
       const fileReader = new FileReader();

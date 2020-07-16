@@ -23,7 +23,9 @@ export const FramedImageList = ({ framedImages }: TProps) => {
   return (
     <Wrapper>
       {framedImages.map((framedImage) => {
-        return <FramedImageItem framedImage={framedImage} />;
+        return (
+          <FramedImageItem key={framedImage.id} framedImage={framedImage} />
+        );
       })}
     </Wrapper>
   );

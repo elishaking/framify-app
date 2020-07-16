@@ -33,7 +33,12 @@ export const HomePage = () => {
   if (images.length === 0)
     return (
       <PageTemplate>
-        <h3>🦏 You have not published any images</h3>
+        <h3>
+          <span role="img" aria-label="no images">
+            🦏
+          </span>{" "}
+          You have not published any images
+        </h3>
         <Button onClick={() => history.push("/upload")}>Add</Button>
       </PageTemplate>
     );
