@@ -14,6 +14,7 @@ const Actions = styled.div`
 
   button {
     margin-right: 1em;
+    margin-bottom: 1em;
   }
 
   small {
@@ -131,7 +132,8 @@ export const UploadPage = () => {
             <Button onClick={cancel}>Cancel</Button>
             <small>
               You can Scale, Move and/or rotate the image. Hold{" "}
-              <strong>shift</strong> to maintain aspect while scaling
+              <strong>shift</strong> to maintain aspect while scaling. Hold{" "}
+              <strong>alt</strong> to scale from center
             </small>
           </>
         ) : (
